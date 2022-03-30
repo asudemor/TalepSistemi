@@ -1,0 +1,22 @@
+﻿@model Talep
+
+@{
+    ViewData["Title"] = "Details Page";
+}
+<h1>@ViewData["Title"]</h1>
+
+
+<div class="text-center">
+    <h1 class="display-4">Detay Sayfası</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+</div>
+<div>
+    <p>Talep ID: @Model.TalepID</p>
+    <p>Talep Gonderen ID: @Model.TalepGonderenID</p>
+    <p>Talep Departman: @Model.TalepDepartman</p>
+    <p>Talep Konu: @Model.TalepKonu</p>
+    <p>Talep Açıklama: @Model.TalepAciklama</p>
+    <p>Talep Tarih: @Model.TalepTarih</p>
+    <p>Talep Durum: @Model.TalepDurum</p>
+</div>

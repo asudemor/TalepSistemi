@@ -4,7 +4,7 @@
 
 .sidenav {
     height: 100%;
-    width: 160px;
+    width: 220px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -27,7 +27,7 @@
         }
 
 .main {
-    margin-left: 160px; /* Same as the width of the sidenav */
+    margin-left: 220px; /* Same as the width of the sidenav */
     font-size: 28px; /* Increased text to enable scrolling */
     padding: 0px 10px;
 }
@@ -40,4 +40,10 @@
         .sidenav a {
             font-size: 18px;
         }
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
 }
