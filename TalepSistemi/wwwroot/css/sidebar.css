@@ -3,11 +3,6 @@
     align-items: stretch;
 }
 
-#sidebar {
-    min-width: 250px;
-    max-width: 250px;
-}
-
 #sidebar.active {
     margin-left: -250px;
 }
@@ -16,6 +11,7 @@
     min-width: 250px;
     max-width: 250px;
     min-height: 100vh;
+    
 }
 
 a[data-toggle="collapse"] {
@@ -109,7 +105,7 @@ ul ul a {
     background: #6d7fcc;
 }
 
-.main {
-    margin-left: 250px; /* Same as the width of the sidebar */
-    padding: 0px 10px;
-}
+/*.main {
+    margin-left: 250px;*/ /* Same as the width of the sidebar */
+    /*padding: 0px 10px;
+}*/

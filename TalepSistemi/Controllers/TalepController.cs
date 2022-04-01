@@ -17,11 +17,16 @@ namespace TalepSistemi.Controllers
         {
             return View();
         }
-        public IActionResult List()
+        [HttpPost]
+        public IActionResult TalepOlustur(Talep t)
+        {
+            return View();
+        }
+        public IActionResult Listele()
         {
             var talepler = new List<Talep>()
             {
-                new Talep{
+                new Talep(){
                     TalepID=1,
                     TalepGonderenID=1,
                     TalepDepartman = "Insan Kaynakları",

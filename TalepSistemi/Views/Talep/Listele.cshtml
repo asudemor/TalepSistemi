@@ -1,0 +1,23 @@
+﻿@model List<Talep>
+
+@{
+    ViewData["Title"] = "Detay Sayfası";
+}
+<h1>@ViewData["Title"]</h1>
+
+<body>
+    <table class="table table-bordered">
+        @foreach (var tlp in Model)
+        {
+            <tr>
+                <td>@tlp.TalepID</td>
+                <td>@tlp.TalepGonderenID</td>
+                <td>@tlp.TalepDepartman</td>
+                <td>@tlp.TalepKonu</td>
+                <td>@tlp.TalepAciklama</td>
+                <td>@tlp.TalepTarih</td>
+                <td>@tlp.TalepDurum</td>
+            </tr>
+        }
+    </table>
+</body>

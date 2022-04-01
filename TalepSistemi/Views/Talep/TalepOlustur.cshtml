@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Talep
+
+@{
     ViewData["Title"] = "Talep Oluşturma Sayfası";
 }
 <h1>@ViewData["Title"]</h1>
@@ -7,3 +9,23 @@
 <div>
     <p>Talep Oluştur</p>
 </div>
+
+
+<form method="post">
+    <div class="form-group">
+        <label for="Konu">Talep Konu</label>
+        <input asp-for="TalepKonu" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="Aciklama">Talep Açıklama</label>
+        <textarea asp-for="TalepAciklama" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="ImageUrl">Resim URL</label>
+        <input asp-for="ImageUrl" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
+ </form>
