@@ -48,13 +48,13 @@
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Talep Geçmişi</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a asp-area="" asp-controller="Talep" asp-action="TalepOlustur">Yanıtlanan Talepler</a>
+                            <a asp-area="" asp-controller="Talep" asp-action="YanitlananTalep">Yanıtlanan Talepler</a>
                         </li>
                         <li>
-                            <a asp-area="" asp-controller="Talep" asp-action="TalepOlustur">Bekleyen Talepler</a>
+                            <a asp-area="" asp-controller="Talep" asp-action="BekleyenTalep">Bekleyen Talepler</a>
                         </li>
                         <li>
-                            <a asp-area="" asp-controller="Talep" asp-action="TalepOlustur">Sonuçlanan Talepler</a>
+                            <a asp-area="" asp-controller="Talep" asp-action="SonuclananTalep">Sonuçlanan Talepler</a>
                         </li>
                     </ul>
                 </li>
@@ -65,7 +65,7 @@
                     <a asp-area="" asp-controller="Home" asp-action="Login">Çıkış Yap</a>
                 </li>
 
-                <li>@*@DateTime.Now.ToShortDateString()*@</li>
+                <!--<li>-->@*@DateTime.Now.ToShortDateString()*@<!--</li>-->
             </ul>
         </nav>
         <div class="main">
