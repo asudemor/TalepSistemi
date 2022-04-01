@@ -51,6 +51,21 @@ namespace TalepSistemi.Controllers
 
             return View(t);
         }
+
+        public IActionResult YanitlananTalep()
+        {
+            return View();
+        }
+
+        public IActionResult BekleyenTalep()
+        {
+            return View();
+        }
+
+        public IActionResult SonuclananTalep()
+        {
+            return View();
+        }
     }
 }
 
