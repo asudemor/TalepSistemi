@@ -1,11 +1,56 @@
-﻿@model Talep
+﻿@model IEnumerable<Talep>
 
 @{
     ViewData["Title"] = "Bekleyen Talepler Sayfası";
 }
 <h1>@ViewData["Title"]</h1>
 
+<table class="table table-hover mt-3">
+    <thead>
+        <th>ID</th>
+        <th>Konu</th>
+        <th>Açıklama</th>
+        <th>Tarih</th>
+        <th>Durum</th>
+        <th>İşlemler</th>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td> @item.TalepID</td>
+            <td> @item.TalepKonu</td>
+            <td> @item.TalepAciklama</td>
+            <td> @item.TalepTarih</td>
+            <td> @item.TalepDurum</td>
+            <td>
 
-<div>
-    <p>Bekleyen Talepler</p>
-</div>
+                <a class="btn btn-outline-secondary" asp-action="Details" asp-route-id="@item.TalepID">DETAY</a>
+                <a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@item.TalepID">DÜZENLE</a>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal@(item.TalepID)">
+                    SİL
+                </button>
+                <div class="modal fade" id="modal@(item.TalepID)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Talep Siliniyor..</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Talebi Kalıcı Olarak Silmek İstiyor Musunuz?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">İPTAL</button>
+                                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.TalepID">SİL</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

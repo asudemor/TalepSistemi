@@ -3,12 +3,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TalepSistemi.Data;
 using TalepSistemi.Models;
 
 namespace TalepSistemi.Controllers
 {
     public class TalepController : Controller
     {
+        private readonly TalepData _context;
+        public TalepController(TalepData context)
+        {
+            _context = context;
+        }
         public IActionResult Index()
         {
             return View();
@@ -17,39 +23,53 @@ namespace TalepSistemi.Controllers
         {
             return View();
         }
+
+        //[HttpGet]
+        //public IActionResult TalepOlustur()   
+        //{
+        //    return View();
+        //}
+
         [HttpPost]
-        public IActionResult TalepOlustur(Talep t)
+        public IActionResult TalepOlustur(Talep talep)      //gorevi veritabanına kaydetmek
         {
-            return View();
+            _context.Talepler.Add(talep);
+            return RedirectToAction("BekleyenTalep");
         }
+
         public IActionResult Listele()
         {
-            var talepler = new List<Talep>()
-            {
-                new Talep(){
-                    TalepID=1,
-                    TalepGonderenID=1,
-                    TalepDepartman = "Insan Kaynakları",
-                    TalepKonu = "Deneme",
-                    TalepAciklama = "DENEMEDENEME",
-                    TalepTarih = DateTime.Now,
-                    TalepDurum = false
-                }
-            };
-            return View(talepler);
+           return View(_context.Talepler);
         }
-        public IActionResult Details()
-        {
-            var t = new Talep();
-            t.TalepID = 1;
-            t.TalepGonderenID = 1;
-            t.TalepDepartman = "Insan Kaynakları";
-            t.TalepKonu = "Deneme";
-            t.TalepAciklama = "DENEMEDENEME";
-            t.TalepTarih = DateTime.Now;
-            t.TalepDurum = false;
 
-            return View(t);
+        public IActionResult Details(int id)
+        {
+            var talep = _context.Talepler.Where(x => x.TalepID == id).SingleOrDefault();
+            return View(talep);
+        }
+
+
+        public IActionResult Edit(int id)
+        {
+            var talep = _context.Talepler.SingleOrDefault(x => x.TalepID == id);
+            return View(talep);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(Talep talep)
+        {
+            var guncellenecekTalep = _context.Talepler.SingleOrDefault(x => x.TalepID == talep.TalepID);
+            await TryUpdateModelAsync(guncellenecekTalep);
+            return RedirectToAction("BekleyenTalep");
+        }
+
+
+
+
+        public IActionResult Delete(int id)
+        {
+            var talep = _context.Talepler.Where(x => x.TalepID == id).SingleOrDefault();
+            _context.Talepler.Remove(talep);
+            return RedirectToAction("BekleyenTalep");
         }
 
         public IActionResult YanitlananTalep()
@@ -59,12 +79,7 @@ namespace TalepSistemi.Controllers
 
         public IActionResult BekleyenTalep()
         {
-            return View();
-        }
-
-        public IActionResult SonuclananTalep()
-        {
-            return View();
+            return View(_context.Talepler);
         }
     }
 }

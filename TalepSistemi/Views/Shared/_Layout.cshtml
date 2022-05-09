@@ -37,10 +37,7 @@
                             <a asp-area="" asp-controller="Talep" asp-action="TalepOlustur">Talep Oluştur</a>
                         </li>
                         <li>
-                            <a asp-area="" asp-controller="Talep" asp-action="Details">Taleplerim</a>
-                        </li>
-                        <li>
-                            <a asp-area="" asp-controller="Talep" asp-action="Listele">Talep Listele</a>
+                            <a asp-area="" asp-controller="Talep" asp-action="Listele">Taleplerim</a>
                         </li>
                     </ul>
                 </li>
@@ -48,14 +45,14 @@
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Talep Geçmişi</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a asp-area="" asp-controller="Talep" asp-action="YanitlananTalep">Yanıtlanan Talepler</a>
-                        </li>
-                        <li>
                             <a asp-area="" asp-controller="Talep" asp-action="BekleyenTalep">Bekleyen Talepler</a>
                         </li>
                         <li>
-                            <a asp-area="" asp-controller="Talep" asp-action="SonuclananTalep">Sonuçlanan Talepler</a>
+                            <a asp-area="" asp-controller="Talep" asp-action="YanitlananTalep">Yanıtlanan Talepler</a>
                         </li>
+                        @*<li>
+            <a asp-area="" asp-controller="Talep" asp-action="SonuclananTalep">Sonuçlanan Talepler</a>
+        </li>*@
                     </ul>
                 </li>
                 <li>

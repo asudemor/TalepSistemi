@@ -1,16 +1,15 @@
-﻿@model Talep
+﻿@model Talep 
 
 @{
     ViewData["Title"] = "Detay Sayfası";
 }
 <h1>@ViewData["Title"]</h1>
 
-<div>
-    <p>Talep ID: @Model.TalepID</p>
-    <p>Talep Gonderen ID: @Model.TalepGonderenID</p>
-    <p>Talep Departman: @Model.TalepDepartman</p>
-    <p>Talep Konu: @Model.TalepKonu</p>
-    <p>Talep Açıklama: @Model.TalepAciklama</p>
-    <p>Talep Tarih: @Model.TalepTarih</p>
-    <p>Talep Durum: @Model.TalepDurum</p>
+<div class="jumbotron mt-3">
+    <h2 class="text-danger">@Model.TalepID</h2>
+    <h5 class="text-primary">@Model.TalepKonu</h5>
+    <h5 class="text-primary">@Model.TalepAciklama</h5>
+    <hr />
+    @*<img src="/resimler/@Model.Resim" style="width: 250px;" />*@
 </div>
+<a asp-action="BekleyenTalep" class="btn btn-secondary">Geri</a>
