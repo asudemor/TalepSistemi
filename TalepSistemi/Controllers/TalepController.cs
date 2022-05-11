@@ -10,8 +10,8 @@ namespace TalepSistemi.Controllers
 {
     public class TalepController : Controller
     {
-        private readonly TalepData _context;
-        public TalepController(TalepData context)
+        private readonly AppDbContext _context;
+        public TalepController(AppDbContext context)
         {
             _context = context;
         }
@@ -34,6 +34,7 @@ namespace TalepSistemi.Controllers
         public IActionResult TalepOlustur(Talep talep)      //gorevi veritabanına kaydetmek
         {
             _context.Talepler.Add(talep);
+            _context.SaveChanges();
             return RedirectToAction("BekleyenTalep");
         }
 

@@ -12,7 +12,7 @@ namespace TalepSistemi.Data
         {
             new Talep{
                     TalepID=1,
-                    TalepGonderenID=1,
+                    TalepGonderen="pelincerkez",
                     TalepDepartman = "Insan Kaynakları",
                     TalepKonu = "Deneme",
                     TalepAciklama = "DENEMEDENEME",
@@ -23,7 +23,7 @@ namespace TalepSistemi.Data
 
                 new Talep{
                     TalepID=2,
-                    TalepGonderenID=2,
+                    TalepGonderen="asudemor",
                     TalepDepartman = "Insan Kaynakları",
                     TalepKonu = "Deneme2",
                     TalepAciklama = "DENEMEDENEME2",

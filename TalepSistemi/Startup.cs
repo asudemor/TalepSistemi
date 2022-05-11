@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,6 +26,7 @@ namespace TalepSistemi
         {
             services.AddControllersWithViews();
             services.AddSingleton<TalepData>();
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer("server=(localdb)\\MSSQLLocalDB;database=DbTalepSistemi;"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

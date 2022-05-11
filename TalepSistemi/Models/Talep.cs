@@ -9,7 +9,8 @@ namespace TalepSistemi.Models
     public class Talep
     {
         public int TalepID { get; set; }
-        public int TalepGonderenID { get; set; }
+        //public int TalepGonderenID { get; set; }
+        public string TalepGonderen { get; set; }
         public string TalepDepartman { get; set; }
 
         [Required]
