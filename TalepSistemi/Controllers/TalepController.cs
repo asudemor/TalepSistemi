@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace TalepSistemi.Controllers
         }
 
         //[HttpGet]
-        //public IActionResult TalepOlustur()   
+        //public IActionResult TalepOlustur()
         //{
         //    return View();
         //}
@@ -38,17 +39,21 @@ namespace TalepSistemi.Controllers
             return RedirectToAction("BekleyenTalep");
         }
 
-        public IActionResult Listele()
+        public async Task<IActionResult> Listele()
         {
-           return View(_context.Talepler);
+           return View(await _context.Talepler.ToListAsync());
         }
 
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int? id)
         {
-            var talep = _context.Talepler.Where(x => x.TalepID == id).SingleOrDefault();
-            return View(talep);
+            if (id != null)
+            {
+                var talep = _context.Talepler.Where(x => x.TalepID == id).SingleOrDefault();
+                if (talep == null) { return NotFound(); }
+                return View(talep);
+            }
+            return NotFound();
         }
-
 
         public IActionResult Edit(int id)
         {
@@ -60,16 +65,15 @@ namespace TalepSistemi.Controllers
         {
             var guncellenecekTalep = _context.Talepler.SingleOrDefault(x => x.TalepID == talep.TalepID);
             await TryUpdateModelAsync(guncellenecekTalep);
+            _context.SaveChanges();
             return RedirectToAction("BekleyenTalep");
         }
-
-
-
 
         public IActionResult Delete(int id)
         {
             var talep = _context.Talepler.Where(x => x.TalepID == id).SingleOrDefault();
             _context.Talepler.Remove(talep);
+            _context.SaveChanges();
             return RedirectToAction("BekleyenTalep");
         }
 
@@ -77,10 +81,9 @@ namespace TalepSistemi.Controllers
         {
             return View();
         }
-
-        public IActionResult BekleyenTalep()
+        public async Task<IActionResult> BekleyenTalep()
         {
-            return View(_context.Talepler);
+            return View(await _context.Talepler.ToListAsync());
         }
     }
 }

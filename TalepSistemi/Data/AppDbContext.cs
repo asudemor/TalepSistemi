@@ -12,15 +12,8 @@ namespace TalepSistemi.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-
         }
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlServer("server=(localdb)\\MSSQLLocalDB;database=DbTalepSistemi;intregrated security=true;");
-        //}
-
-
         public DbSet<Talep> Talepler { get; set; } 
+        public DbSet<Kullanici> Kullanicilar { get; set; }
     }
 }

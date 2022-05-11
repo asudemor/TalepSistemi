@@ -5,11 +5,10 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-<div class="jumbotron mt-3">
-    <h2 class="text-danger">@Model.TalepID</h2>
-    <h5 class="text-primary">@Model.TalepKonu</h5>
-    <h5 class="text-primary">@Model.TalepAciklama</h5>
-    <hr />
+<div class="jumbotron">
+    <h5 class="text-danger">@Model.TalepID</h5><hr />
+    <h2 class="text-black">@Model.TalepKonu</h2>
+    <h5 class="text-body">@Model.TalepAciklama</h5>
     @*<img src="/resimler/@Model.Resim" style="width: 250px;" />*@
 </div>
 <a asp-action="BekleyenTalep" class="btn btn-secondary">Geri</a>

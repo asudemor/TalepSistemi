@@ -27,12 +27,8 @@
         <small id="aciklamaHelp" class="form-text text-muted">Talebin açıklaması girilmelidir.</small>
     </div>
     <div class="form-group">
-        <label for="durum">Durum</label>
-        <input asp-for="TalepDurum" type="text" class="form-control" id="durum">
-    </div>
-    <div class="form-group">
         <label for="tarih">Tarih</label>
-        <input asp-for="TalepTarih" type="datetime" class="form-control" id="tarih">
+        <input asp-for="TalepTarih" readonly value="@DateTime.Now" type="datetime" class="form-control" id="tarih">
     </div>
     <div class="form-group">
         <label for="resim">Resim</label>

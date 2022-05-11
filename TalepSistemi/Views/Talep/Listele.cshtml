@@ -1,23 +1,39 @@
-﻿@model List<Talep>
+﻿@model IEnumerable<Talep>
 
 @{
-    ViewData["Title"] = "Listeleme Sayfası";
+    ViewData["Title"] = "Talepler Listesi";
 }
 <h1>@ViewData["Title"]</h1>
 
-<body>
-    <table class="table table-bordered">
+<table class="table table-borderless mt-4">
+    <thead>
+        <th>ID</th>
+        <th>Gönderen</th>
+        <th>Departman</th>
+        <th>Konu</th>
+        <th>Açıklama</th>
+        <th>Tarih</th>
+        <th>Durum</th>
+    </thead>
+    <tbody>
         @foreach (var tlp in Model)
         {
             <tr>
-                <td>@tlp.TalepID</td>
-                <td>@tlp.TalepGonderen</td>
-                <td>@tlp.TalepDepartman</td>
-                <td>@tlp.TalepKonu</td>
-                <td>@tlp.TalepAciklama</td>
-                <td>@tlp.TalepTarih</td>
-                <td>@tlp.TalepDurum</td>
+                <td>@Html.DisplayFor(modelItem => tlp.TalepID)</td>
+                <td>@Html.DisplayFor(modelItem => tlp.TalepGonderen)</td>
+                <td>@Html.DisplayFor(modelItem => tlp.TalepDepartman)</td>
+                <td>@Html.DisplayFor(modelItem => tlp.TalepKonu)</td>
+                <td>@Html.DisplayFor(modelItem => tlp.TalepAciklama)</td>
+                <td>@Html.DisplayFor(modelItem => tlp.TalepTarih)</td>
+                <td>@Html.DisplayFor(modelItem => tlp.TalepDurum)</td>
+                @*<td>@tlp.TalepID</td>
+                    <td>@tlp.TalepGonderen</td>
+                    <td>@tlp.TalepDepartman</td>
+                    <td>@tlp.TalepKonu</td>
+                    <td>@tlp.TalepAciklama</td>
+                    <td>@tlp.TalepTarih</td>
+                    <td>@tlp.TalepDurum</td>*@
             </tr>
         }
-    </table>
-</body>
+    </tbody>
+</table>

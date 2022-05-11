@@ -19,6 +19,29 @@ namespace TalepSistemi.Migrations
                 .HasAnnotation("ProductVersion", "5.0.9")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("TalepSistemi.Models.Kullanici", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Adminlik")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("KullaniciAdi")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Sifre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Kullanicilar");
+                });
+
             modelBuilder.Entity("TalepSistemi.Models.Talep", b =>
                 {
                     b.Property<int>("TalepID")
@@ -34,12 +57,14 @@ namespace TalepSistemi.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TalepDepartman")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TalepDurum")
                         .HasColumnType("bit");
 
                     b.Property<string>("TalepGonderen")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TalepKonu")

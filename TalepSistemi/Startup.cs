@@ -26,7 +26,7 @@ namespace TalepSistemi
         {
             services.AddControllersWithViews();
             services.AddSingleton<TalepData>();
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer("server=(localdb)\\MSSQLLocalDB;database=DbTalepSistemi;"));
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AppDbContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
