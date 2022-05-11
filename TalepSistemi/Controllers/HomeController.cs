@@ -32,7 +32,6 @@ namespace TalepSistemi.Controllers
             return View();
         }
 
-
         public IActionResult Login()
         {
             return View();
@@ -40,8 +39,6 @@ namespace TalepSistemi.Controllers
         [HttpPost]
         public IActionResult Control(string username,string pass)
         {
-           
-            
             return RedirectToAction("Index");
         }
         public IActionResult Profil()

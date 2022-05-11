@@ -1,5 +1,4 @@
-﻿
-
+﻿@model IEnumerable<Kullanici>
 
 @{
     ViewData["Title"] = "Ana Sayfa";
@@ -10,3 +9,22 @@
 <p>
     MLPCARE Talep Takip Sistemi
 </p>
+
+<table class="table table-hover mt-3">
+    <thead>
+    <th>ID</th>
+    <th>Kullanıcı Adı</th>
+    <th>Şifre</th>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td> @item.id</td>
+                <td> @item.KullaniciAdi</td>
+                <td> @item.Sifre</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
