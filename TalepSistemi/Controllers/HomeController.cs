@@ -28,6 +28,13 @@ namespace TalepSistemi.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Login(string username, string pass)
+        {
+            
+            return View();
+        }
+
         public IActionResult Profil()
         {
             return View();
@@ -38,5 +45,6 @@ namespace TalepSistemi.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }

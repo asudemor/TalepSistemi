@@ -24,6 +24,8 @@ namespace TalepSistemi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSession();
+            services.AddDistributedMemoryCache();
             services.AddControllersWithViews();
             services.AddSingleton<TalepData>();
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer("server=(localdb)\\MSSQLLocalDB;database=DbTalepSistemi;"));
@@ -44,14 +46,16 @@ namespace TalepSistemi
 
             app.UseRouting();
 
+            app.UseSession();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    //pattern: "{controller=Home}/{action=Login}/{id?}");
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Login}/{id?}");
+                    //pattern: "{controller=Home}/{action=Index}/{id?}");
         });
         }
     }
