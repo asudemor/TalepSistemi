@@ -31,13 +31,20 @@ namespace TalepSistemi.Controllers
         //    return View();
         //}
 
+        
         [HttpPost]
-        public IActionResult TalepOlustur(Talep talep)      //gorevi veritabanına kaydetmek
+        public IActionResult TalepOlustur(Talep talep) //gorevi veritabanına kaydetmek
         {
+            if (!ModelState.IsValid)
+            {
+                return View("TalepOlustur");
+            }
             _context.Talepler.Add(talep);
             _context.SaveChanges();
             return RedirectToAction("BekleyenTalep");
         }
+
+
 
         public async Task<IActionResult> Listele()
         {

@@ -23,11 +23,27 @@ namespace TalepSistemi.Controllers
             return View();
         }
 
-        public IActionResult Login()
+        public IActionResult Admin()
+        {
+            return View();
+        }
+        public IActionResult Kullanici()
         {
             return View();
         }
 
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Control(string username,string pass)
+        {
+           
+            
+            return RedirectToAction("Index");
+        }
         public IActionResult Profil()
         {
             return View();

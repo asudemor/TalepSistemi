@@ -11,24 +11,31 @@
     <div class="form-group">
         <label for="gonderen">Gönderen</label>
         <input asp-for="TalepGonderen" type="text" class="form-control" id="gonderen">
+        @Html.ValidationMessageFor(x => x.TalepGonderen, "", new { @style = "color:red" })
     </div>
     <div class="form-group">
         <label for="departman">Departman</label>
         <input asp-for="TalepDepartman" type="text" class="form-control" id="departman">
+        @Html.ValidationMessageFor(x => x.TalepDepartman, "", new { @style = "color:red" })
+
+
+
     </div>
     <div class="form-group">
         <label for="konu">Konu</label>
-        <input asp-for="TalepKonu" type="text" class="form-control" id="konu" aria-describedby="konuHelp">
-        <small id="konuHelp" class="form-text text-muted">Talebin konusu girilmelidir.</small>
+        <input asp-for="TalepKonu" type="text" class="form-control" id="konu">
+        @Html.ValidationMessageFor(x => x.TalepKonu, "", new { @style = "color:red" })
+
+
+
     </div>
     <div class="form-group">
         <label for="aciklama">Açıklama</label>
-        <textarea asp-for="TalepAciklama" maxlength="1500" class="form-control" id="aciklama" aria-describedby="aciklamaHelp"></textarea>
-        <small id="aciklamaHelp" class="form-text text-muted">Talebin açıklaması girilmelidir.</small>
-    </div>
-    <div class="form-group">
-        <label for="tarih">Tarih</label>
-        <input asp-for="TalepTarih" readonly value="@DateTime.Now" type="datetime" class="form-control" id="tarih">
+<textarea asp-for="TalepAciklama" maxlength="1500" class="form-control" id="aciklama"></textarea>
+        @Html.ValidationMessageFor(x => x.TalepAciklama, "", new { @style = "color:red" })
+
+
+
     </div>
     <div class="form-group">
         <label for="resim">Resim</label>
