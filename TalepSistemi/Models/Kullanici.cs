@@ -9,11 +9,9 @@ namespace TalepSistemi.Models
     public class Kullanici
     {
         public int id { get; set; }
-
-        [Required(ErrorMessage = "{0} alanı boş bırakılamaz.")]
         public string KullaniciAdi { get; set; }
 
-        [Required(ErrorMessage = "{0} alanı boş bırakılamaz.")]
+        [DataType(DataType.Password)]
         public string Sifre { get; set; }
         public bool Adminlik { get; set; }
     }

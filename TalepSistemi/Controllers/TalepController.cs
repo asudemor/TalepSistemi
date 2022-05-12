@@ -22,16 +22,10 @@ namespace TalepSistemi.Controllers
         }
         public IActionResult TalepOlustur()
         {
+            ViewBag.Departmanlar = new List<string>() { "İnsan Kaynaklari", "Bilgi İslem", "DDO" };
             return View();
         }
 
-        //[HttpGet]
-        //public IActionResult TalepOlustur()
-        //{
-        //    return View();
-        //}
-
-        
         [HttpPost]
         public IActionResult TalepOlustur(Talep talep) //gorevi veritabanına kaydetmek
         {
@@ -43,8 +37,6 @@ namespace TalepSistemi.Controllers
             _context.SaveChanges();
             return RedirectToAction("BekleyenTalep");
         }
-
-
 
         public async Task<IActionResult> Listele()
         {
@@ -69,7 +61,11 @@ namespace TalepSistemi.Controllers
         }
         [HttpPost]
         public async Task<IActionResult> Edit(Talep talep)
-        {
+        {            
+            if (!ModelState.IsValid)
+            {
+                return View("Edit");
+            }
             var guncellenecekTalep = _context.Talepler.SingleOrDefault(x => x.TalepID == talep.TalepID);
             await TryUpdateModelAsync(guncellenecekTalep);
             _context.SaveChanges();
