@@ -15,8 +15,7 @@
     </div>
     <div class="form-group">
         <label for="departman">Departman</label>
-        @*<input asp-for="TalepDepartman" type="text" class="form-control" id="departman">*@
-        <select asp-for="TalepDepartman" class="form-control" id="departman" asp-items="new SelectList(ViewBag.Departmanlar)"></select>
+        <input asp-for="TalepDepartman" type="text" class="form-control" id="departman">
         @Html.ValidationMessageFor(x => x.TalepDepartman, "", new { @style = "color:red" })
     </div>
     <div class="form-group">

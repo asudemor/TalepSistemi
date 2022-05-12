@@ -22,7 +22,6 @@ namespace TalepSistemi.Controllers
         }
         public IActionResult TalepOlustur()
         {
-            ViewBag.Departmanlar = new List<string>() { "İnsan Kaynaklari", "Bilgi İslem", "DDO" };
             return View();
         }
 
