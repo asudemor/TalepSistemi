@@ -13,8 +13,8 @@ namespace TalepSistemi.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    KullaniciAdi = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Sifre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    KullaniciAdi = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Sifre = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Adminlik = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>

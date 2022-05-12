@@ -10,7 +10,7 @@ using TalepSistemi.Data;
 namespace TalepSistemi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220511122727_migTalepSistemi")]
+    [Migration("20220512124328_migTalepSistemi")]
     partial class migTalepSistemi
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,11 +32,9 @@ namespace TalepSistemi.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("KullaniciAdi")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Sifre")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");

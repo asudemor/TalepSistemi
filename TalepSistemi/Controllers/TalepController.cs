@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using TalepSistemi.Data;
@@ -12,12 +15,16 @@ namespace TalepSistemi.Controllers
     public class TalepController : Controller
     {
         private readonly AppDbContext _context;
-        public TalepController(AppDbContext context)
+        private readonly IWebHostEnvironment _hostEnviroment;
+
+        public TalepController(AppDbContext context, IWebHostEnvironment hostEnviroment)
         {
             _context = context;
+            _hostEnviroment = hostEnviroment;
         }
         public IActionResult Index()
         {
+
             return View();
         }
         public IActionResult TalepOlustur()
@@ -26,12 +33,26 @@ namespace TalepSistemi.Controllers
         }
 
         [HttpPost]
-        public IActionResult TalepOlustur(Talep talep) //gorevi veritabanına kaydetmek
+        public async Task<IActionResult> TalepOlustur(Talep talep) //gorevi veritabanına kaydetmek
         {
             if (!ModelState.IsValid)
             {
                 return View("TalepOlustur");
             }
+
+            var dosyaYolu = Path.Combine(_hostEnviroment.WebRootPath, "resimler");
+            if (!Directory.Exists(dosyaYolu))
+            {
+                Directory.CreateDirectory(dosyaYolu);
+            }
+
+            var tamDosyaAdi = Path.Combine(dosyaYolu, talep.Dosya.FileName);
+            using (var dosyaAkisi = new FileStream(tamDosyaAdi, FileMode.Create))
+            {
+                await talep.Dosya.CopyToAsync(dosyaAkisi);
+            }
+
+            talep.ImageUrl = talep.Dosya.FileName;
             _context.Talepler.Add(talep);
             _context.SaveChanges();
             return RedirectToAction("BekleyenTalep");

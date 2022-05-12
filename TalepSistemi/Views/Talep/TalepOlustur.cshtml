@@ -6,18 +6,20 @@
 <h1>@ViewData["Title"]</h1>
 
 
-<form asp-action="TalepOlustur">
+<form asp-action="TalepOlustur" enctype="multipart/form-data">
 
     <div class="form-group">
         <label for="gonderen">Gönderen</label>
         <input asp-for="TalepGonderen" type="text" class="form-control" id="gonderen">
         @Html.ValidationMessageFor(x => x.TalepGonderen, "", new { @style = "color:red" })
     </div>
+
     <div class="form-group">
         <label for="departman">Departman</label>
         <input asp-for="TalepDepartman" type="text" class="form-control" id="departman">
         @Html.ValidationMessageFor(x => x.TalepDepartman, "", new { @style = "color:red" })
     </div>
+
     <div class="form-group">
         <label for="konu">Konu</label>
         <input asp-for="TalepKonu" type="text" class="form-control" id="konu">
@@ -33,9 +35,14 @@
         <input asp-for="TalepTarih" readonly value="@DateTime.Now" type="datetime" class="form-control" id="tarih">
     </div>
     <div class="form-group">
+        <label asp-for="Dosya" for="dosyaYukle" class="form-control-label"></label>
+        <input asp-for="Dosya" class="form-control-file" type="file" id="dosyaYukle">
+    </div>
+
+    @*<div class="form-group">
         <label for="resim">Resim</label>
         <input asp-for="ImageUrl" type="text" placeholder="Resmin yolunu giriniz" class="form-control" id="resim">
-    </div>
+    </div>*@
 
     <button type="submit" class="btn btn-primary btn-block mb-4">Talep Oluştur</button>
 </form>

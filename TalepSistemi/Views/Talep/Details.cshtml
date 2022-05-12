@@ -1,14 +1,41 @@
-﻿@model Talep 
+﻿@model Talep
 
 @{
     ViewData["Title"] = "Detay Sayfası";
 }
 <h1>@ViewData["Title"]</h1>
 
-<div class="jumbotron">
-    <h5 class="text-danger">@Model.TalepID</h5><hr />
-    <h2 class="text-black">@Model.TalepKonu</h2>
-    <h5 class="text-body">@Model.TalepAciklama</h5>
-    @*<img src="/resimler/@Model.Resim" style="width: 250px;" />*@
+
+<div class="row mt-5">
+    <div class="col-8">
+        <h4 class="text-primary">Talep Detayları</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-5">@Html.DisplayNameFor(model => model.TalepGonderen)</dt>
+            <dd class="col-sm-5">@Html.DisplayFor(model => model.TalepGonderen)</dd>
+
+            <dt class="col-sm-5">@Html.DisplayNameFor(model => model.TalepKonu)</dt>
+            <dd class="col-sm-5">@Html.DisplayFor(model => model.TalepKonu)</dd>
+
+            <dt class="col-sm-5">@Html.DisplayNameFor(model => model.TalepAciklama)</dt>
+            <dd class="col-sm-5">@Html.DisplayFor(model => model.TalepAciklama)</dd>
+
+            <dt class="col-sm-5">@Html.DisplayNameFor(model => model.TalepDurum)</dt>
+            <dd class="col-sm-5">@Html.DisplayFor(model => model.TalepDurum)</dd>
+
+            <dt class="col-sm-5">@Html.DisplayNameFor(model => model.TalepTarih)</dt>
+            <dd class="col-sm-5">@Html.DisplayFor(model => model.TalepTarih)</dd>
+
+        </dl>
+    </div>
+    <div class="col-8">
+        <h4 class="text-dangeer">Resim</h4>
+        <hr />
+        <img src="/resimler/@Model.ImageUrl" style="max-height: 200px;" />
+    </div>
+    <hr />
+    @*<div class="col-8">
+        <a asp-action="BekleyenTalep" class="btn btn-secondary">Geri</a>
+    </div>*@
+
 </div>
-<a asp-action="BekleyenTalep" class="btn btn-secondary">Geri</a>

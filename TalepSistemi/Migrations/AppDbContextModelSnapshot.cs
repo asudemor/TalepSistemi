@@ -30,11 +30,9 @@ namespace TalepSistemi.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("KullaniciAdi")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Sifre")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
