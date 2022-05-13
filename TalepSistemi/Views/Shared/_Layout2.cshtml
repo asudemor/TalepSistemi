@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Ana Sayfa Admin";
     Layout = null;
 }
 
@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>MLPCARE TALEP TOPLAMA SİSTEMİ</title>
+    <title>ADMİN PANELİ</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/sidebar.css">
@@ -25,43 +25,29 @@
 
     <div class="wrapper">
         <nav id="sidebar">
-            <div class="sidebar-header">
-                <h3><a asp-area="" asp-controller="Home" asp-action="Index">MLPCARE</a></h3>
-            </div>
 
+            <div class="sidebar-header">
+                <h3><a asp-area="" asp-controller="Admin" asp-action="AdminIndex">MLPCARE</a></h3>
+            </div>
             <ul class="list-unstyled components">
                 <li class="active">
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Talep İşlemleri</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a asp-area="" asp-controller="Talep" asp-action="TalepOlustur">Talep Oluştur</a>
+                            <a asp-area="" asp-controller="Admin" asp-action="AdminYeniTalepler">Yeni Talepler</a>
                         </li>
                         <li>
-                            <a asp-area="" asp-controller="Talep" asp-action="Listele">Talepler</a>
+                            <a asp-area="" asp-controller="Admin" asp-action="AdminSonuclananTalepler">Yanıtlanan Talepler</a>
                         </li>
+
                     </ul>
                 </li>
                 <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Talep Geçmişi</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li>
-                            <a asp-area="" asp-controller="Talep" asp-action="BekleyenTalep">Bekleyen Talepler</a>
-                        </li>
-                        <li>
-                            <a asp-area="" asp-controller="Talep" asp-action="YanitlananTalep">Yanıtlanan Talepler</a>
-                        </li>
-                        @*<li>
-                    <a asp-area="" asp-controller="Talep" asp-action="SonuclananTalep">Sonuçlanan Talepler</a>
-                </li>*@
-                    </ul>
-                </li>
-                <li>
-                    <a asp-area="" asp-controller="Home" asp-action="Profil">Profilim</a>
+                    <a asp-area="" asp-controller="Admin" asp-action="AdminProfil">Profilim</a>
                 </li>
                 <li>
                     <a asp-area="" asp-controller="Home" asp-action="Login">Çıkış Yap</a>
                 </li>
-                <!--<li>-->@*@DateTime.Now.ToShortDateString()*@<!--</li>-->
             </ul>
         </nav>
         <div class="main">
