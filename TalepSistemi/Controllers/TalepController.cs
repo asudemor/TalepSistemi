@@ -33,10 +33,13 @@ namespace TalepSistemi.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> TalepOlustur(Talep talep) //gorevi veritabanına kaydetmek
         {
             if (!ModelState.IsValid)
             {
+                //string wwwRootPath = _hostEnviroment.WebRootPath;
+                //string filename = Path.GetFileNameWithoutExtension(i)
                 return View("TalepOlustur");
             }
 
@@ -53,6 +56,7 @@ namespace TalepSistemi.Controllers
             }
 
             talep.ImageUrl = talep.Dosya.FileName;
+
             _context.Talepler.Add(talep);
             _context.SaveChanges();
             return RedirectToAction("BekleyenTalep");
@@ -99,14 +103,11 @@ namespace TalepSistemi.Controllers
             _context.SaveChanges();
             return RedirectToAction("BekleyenTalep");
         }
-
-        public IActionResult YanitlananTalep()
+        public IActionResult BekleyenTalep()
         {
-            return View();
-        }
-        public async Task<IActionResult> BekleyenTalep()
-        {
-            return View(await _context.Talepler.ToListAsync());
+            var talep = _context.Talepler.Where(x => x.TalepDurum == false).ToList();
+            if (talep == null) { return NotFound(); }
+            return View(talep);
         }
     }
 }

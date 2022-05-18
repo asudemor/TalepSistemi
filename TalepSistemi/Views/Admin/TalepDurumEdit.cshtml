@@ -1,0 +1,36 @@
+﻿@model Talep
+
+@{ ViewData["Title"] = "Talep Durum"; }
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="TalepDurumEdit">
+    <div class="form-group">
+        <label for="id">ID</label>
+        <input asp-for="TalepID" readonly type="text" class="form-control" id="id">
+    </div>
+    <div class="form-group">
+        <label for="gonderen">Gönderen</label>
+        <input asp-for="TalepGonderen" readonly type="text" class="form-control" id="gonderen">
+    </div>
+    <div class="form-group">
+        <label for="departman">Departman</label>
+        <input asp-for="TalepDepartman" readonly type="text" class="form-control" id="departman">
+    </div>
+    <div class="form-group">
+        <label for="konu">Konu</label>
+        <input asp-for="TalepKonu" readonly type="text" class="form-control" id="konu">
+    </div>
+    <div class="form-group">
+        <label for="aciklama">Açıklama</label>
+        <textarea asp-for="TalepAciklama" readonly maxlength="1500" class="form-control" id="aciklama"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="durum">Durum</label>
+        <input type="checkbox" asp-for="TalepDurum" readonly maxlength="1500" class="form-control" id="durum" />
+    </div>
+
+    <div class="modal-footer">
+        <a asp-action="AdminYeniTalepler" class="btn btn-secondary">VAZGEÇ</a>
+        <button type="submit" class="btn btn-primary">KAYDET</button>
+    </div>
+</form>

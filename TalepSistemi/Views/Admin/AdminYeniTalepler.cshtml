@@ -12,49 +12,24 @@
 
 <table class="table table-hover mt-3">
     <thead>
-    <th>ID</th>
     <th>Gönderen</th>
     <th>Departman</th>
     <th>Konu</th>
     <th>Tarih</th>
+    <th>Durum</th>
     <th>İşlemler</th>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td> @item.TalepID</td>
-                <td> @item.TalepGonderen</td>
-                <td> @item.TalepDepartman</td>
-                <td> @item.TalepKonu</td>
-                <td> @item.TalepTarih</td>
-                <td>
-                    <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#modal@(item.TalepID)">
-                        DETAY
-                    </button>
-                    <div class="modal fade" id="modal@(item.TalepID)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">@(item.TalepAciklama)</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <img src="/resimler/@item.ImageUrl" style="max-height: 200px;" />
-
-                                </div>
-                                <div class="modal-footer">
-                                    <a class="btn btn-danger" asp-action="AdminSonuclananTalepler" asp-route-id="@item.TalepID">REDDET</a>
-                                    <a class="btn btn-success" asp-action="AdminSonuclananTalepler" asp-route-id="@item.TalepID">ONAYLA</a>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
+        <tr>
+            <td> @item.TalepGonderen</td>
+            <td> @item.TalepDepartman</td>
+            <td> @item.TalepKonu</td>
+            <td> @item.TalepTarih</td>
+            <td> @item.TalepDurum</td>
+            <td><a class="btn btn-danger" asp-action="TalepDurumEdit" asp-route-id="@item.TalepID">DETAY</a></td>
+        </tr>
         }
     </tbody>
 </table>

@@ -31,11 +31,32 @@ namespace TalepSistemi.Controllers
         }
         public IActionResult AdminSonuclananTalepler()
         {
-            return View();
+            var talep = _context.Talepler.Where(x => x.TalepDurum == true).ToList();
+            if (talep == null) { return NotFound(); }
+            return View(talep);
         }
-        public async Task<IActionResult> AdminYeniTalepler()
+        public IActionResult AdminYeniTalepler()
         {
-            return View(await _context.Talepler.ToListAsync());
+            var talep = _context.Talepler.Where(x => x.TalepDurum == false).ToList();
+            if (talep == null) { return NotFound(); }
+            return View(talep);
+        }
+        public IActionResult TalepDurumEdit(int id)
+        {
+            var talep = _context.Talepler.SingleOrDefault(x => x.TalepID == id);
+            return View(talep);
+        }
+        [HttpPost]
+        public async Task<IActionResult> TalepDurumEdit(Talep talep)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("TalepDurumEdit");
+            }
+            var guncellenecekTalep = _context.Talepler.SingleOrDefault(x => x.TalepID == talep.TalepID);
+            await TryUpdateModelAsync(guncellenecekTalep);
+            _context.SaveChanges();
+            return RedirectToAction("AdminYeniTalepler");
         }
     }
 }
