@@ -59,8 +59,6 @@ namespace TalepSistemi.Controllers
             {
                 return RedirectToAction("Kullanici");
             }
-
-           
         }
         public IActionResult Profil()
         {

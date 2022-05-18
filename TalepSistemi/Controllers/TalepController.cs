@@ -33,29 +33,28 @@ namespace TalepSistemi.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> TalepOlustur(Talep talep) //gorevi veritabanına kaydetmek
         {
             if (!ModelState.IsValid)
             {
-                //string wwwRootPath = _hostEnviroment.WebRootPath;
-                //string filename = Path.GetFileNameWithoutExtension(i)
                 return View("TalepOlustur");
             }
-
-            var dosyaYolu = Path.Combine(_hostEnviroment.WebRootPath, "resimler");
-            if (!Directory.Exists(dosyaYolu))
+            if (talep.Dosya != null)
             {
-                Directory.CreateDirectory(dosyaYolu);
-            }
+                var dosyaYolu = Path.Combine(_hostEnviroment.WebRootPath, "resimler");
+                if (!Directory.Exists(dosyaYolu))
+                {
+                    Directory.CreateDirectory(dosyaYolu);
+                }
 
-            var tamDosyaAdi = Path.Combine(dosyaYolu, talep.Dosya.FileName);
-            using (var dosyaAkisi = new FileStream(tamDosyaAdi, FileMode.Create))
-            {
-                await talep.Dosya.CopyToAsync(dosyaAkisi);
-            }
+                var tamDosyaAdi = Path.Combine(dosyaYolu, talep.Dosya.FileName);
+                using (var dosyaAkisi = new FileStream(tamDosyaAdi, FileMode.Create))
+                {
+                    await talep.Dosya.CopyToAsync(dosyaAkisi);
+                }
 
-            talep.ImageUrl = talep.Dosya.FileName;
+                talep.ImageUrl = talep.Dosya.FileName;
+            }
 
             _context.Talepler.Add(talep);
             _context.SaveChanges();
@@ -85,17 +84,32 @@ namespace TalepSistemi.Controllers
         }
         [HttpPost]
         public async Task<IActionResult> Edit(Talep talep)
-        {            
+        {
             if (!ModelState.IsValid)
             {
                 return View("Edit");
+            }
+            if (talep.Dosya != null)
+            {
+                var dosyaYolu = Path.Combine(_hostEnviroment.WebRootPath, "resimler");
+                if (!Directory.Exists(dosyaYolu))
+                {
+                    Directory.CreateDirectory(dosyaYolu);
+                }
+
+                var tamDosyaAdi = Path.Combine(dosyaYolu, talep.Dosya.FileName);
+                using (var dosyaAkisi = new FileStream(tamDosyaAdi, FileMode.Create))
+                {
+                    await talep.Dosya.CopyToAsync(dosyaAkisi);
+                }
+
+                talep.ImageUrl = talep.Dosya.FileName;
             }
             var guncellenecekTalep = _context.Talepler.SingleOrDefault(x => x.TalepID == talep.TalepID);
             await TryUpdateModelAsync(guncellenecekTalep);
             _context.SaveChanges();
             return RedirectToAction("BekleyenTalep");
         }
-
         public IActionResult Delete(int id)
         {
             var talep = _context.Talepler.Where(x => x.TalepID == id).SingleOrDefault();

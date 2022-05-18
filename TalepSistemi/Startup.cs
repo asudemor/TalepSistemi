@@ -50,9 +50,8 @@ namespace TalepSistemi
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                pattern: "{controller=Home}/{action=Login}/{id?}");
-
-
+            pattern: "{controller=Home}/{action=Login}/{id?}");
+                //pattern: "{controller=Talep}/{action=TalepOlustur}/{id?}");
                 //pattern: "{controller=Admin}/{action=AdminIndex}/{id?}");
                 //pattern: "{controller=Home}/{action=Index}/{id?}/{username}/pass");
             });
