@@ -1,11 +1,16 @@
-﻿@model Talep
-
-@{
+﻿@{
     ViewData["Title"] = "Profil Sayfası";
+    if (ViewBag.kisiveri2 == true)
+    {
+        Layout = "_Layout2";
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
 }
-<h1>@ViewData["Title"]</h1>
-
-
 <div>
     <p>Profilim</p>
+    <p>Aktif Kullanıcı Adı: <span class="text-danger">@ViewBag.kisiVeri</span></p>
+    <p>Aktif Kullanıcı Adminlik: <span class="text-danger">@ViewBag.kisiVeri2</span></p>
 </div>

@@ -1,19 +1,20 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using TalepSistemi.Data;
 using TalepSistemi.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TalepSistemi.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly AppDbContext _context;
         private readonly IWebHostEnvironment _hostEnviroment;
         public HomeController(AppDbContext context, IWebHostEnvironment hostEnviroment)
@@ -27,43 +28,38 @@ namespace TalepSistemi.Controllers
             return View();
         }
 
-        public IActionResult Admin()
-        {
-            return View();
-        }
-        public IActionResult Kullanici()
-        {
-            return View();
-        }
-
         public IActionResult Login()
         {
             return View();
         }
+
         [HttpPost]
-        public IActionResult Control(string username,string pass)
+        public IActionResult Control(string username, string pass)
         {
-            List<Kullanici> kullanici = new List<Kullanici>();
             var kisi = _context.Kullanicilar.Where(x => x.KullaniciAdi == username && x.Sifre == pass).SingleOrDefault();
-            kullanici.Add(kisi);
-            if (kisi==null)
+            if (kisi != null)
             {
-                return RedirectToAction("Login");
+                HttpContext.Session.SetString("testSession", JsonSerializer.Serialize(kisi));
+                if (kisi.Adminlik == true){return RedirectToAction("AdminIndex", "Admin");}
+                else{return RedirectToAction("Kullanici");}
             }
-            if (kisi.Adminlik==true)
-            {
-                return RedirectToAction("AdminIndex","Admin");
-            }
-           
-            else
-            {
-                return RedirectToAction("Kullanici");
-            }
+            else{return RedirectToAction("Login");}
         }
         public IActionResult Profil()
         {
+            var kisiVeri = HttpContext.Session.GetString("testSession");
+            var kullanici = JsonSerializer.Deserialize<Kullanici>(kisiVeri);
+            ViewBag.kisiVeri = kullanici.KullaniciAdi;
+            ViewBag.kisiVeri2 = kullanici.Adminlik;
             return View();
         }
+
+        public IActionResult LogOut()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login");
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
