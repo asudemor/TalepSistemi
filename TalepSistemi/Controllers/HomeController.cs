@@ -39,9 +39,10 @@ namespace TalepSistemi.Controllers
             var kisi = _context.Kullanicilar.Where(x => x.KullaniciAdi == username && x.Sifre == pass).SingleOrDefault();
             if (kisi != null)
             {
+                ViewBag.username = kisi.KullaniciAdi;
                 HttpContext.Session.SetString("testSession", JsonSerializer.Serialize(kisi));
                 if (kisi.Adminlik == true){return RedirectToAction("AdminIndex", "Admin");}
-                else{return RedirectToAction("Index");}
+                else{return RedirectToAction("Index","Talep");}
             }
             else{return RedirectToAction("Login");}
         }

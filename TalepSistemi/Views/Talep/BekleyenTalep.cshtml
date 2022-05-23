@@ -7,6 +7,7 @@
 
 <table class="table table-hover mt-3">
     <thead>
+        <th>Gönderen</th>
         <th>Konu</th>
         <th>Açıklama</th>
         <th>Tarih</th>
@@ -17,6 +18,7 @@
         @foreach (var item in Model)
         {
         <tr>
+            <td> @item.TalepGonderen</td>
             <td> @item.TalepKonu</td>
             <td> @item.TalepAciklama</td>
             <td> @item.TalepTarih</td>
@@ -25,6 +27,8 @@
 
                 <a class="btn btn-outline-secondary" asp-action="Details" asp-route-id="@item.TalepID">DETAY</a>
                 <a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@item.TalepID">DÜZENLE</a>
+                <a class="btn btn-outline-secondary" asp-action="Listele" asp-route-username="@item.TalepGonderen">LİSTELE</a>
+
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal@(item.TalepID)">
                     SİL
                 </button>

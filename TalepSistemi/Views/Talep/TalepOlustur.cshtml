@@ -5,7 +5,7 @@
 <form asp-action="TalepOlustur" enctype="multipart/form-data">
     <div class="form-group">
         <label for="gonderen">Gönderen</label>
-        <input asp-for="TalepGonderen" type="text" class="form-control" id="gonderen">
+        <input asp-for="TalepGonderen" readonly type="text" value="" class="form-control" id="gonderen">
         @Html.ValidationMessageFor(x => x.TalepGonderen, "", new { @style = "color:red" })
     </div>
     <div class="form-group">

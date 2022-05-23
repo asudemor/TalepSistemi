@@ -61,10 +61,20 @@ namespace TalepSistemi.Controllers
             return RedirectToAction("BekleyenTalep");
         }
 
-        public async Task<IActionResult> Listele()
+        //public async Task<IActionResult> Listele()
+        //{
+        //   return View(await _context.Talepler.ToListAsync());
+        //}
+
+        public IActionResult Listele(string? username)
         {
-           return View(await _context.Talepler.ToListAsync());
+            //username = "asudemor"; //Otomatik gelmesi gerekli.
+            List<Talep> gonderenTalep = _context.Talepler.Where(x => x.TalepGonderen == username).ToList();
+            //var listele = _context.Talepler.Where(x => x.TalepGonderen == username).ToList();
+            //return View(listele);
+            return View(gonderenTalep);
         }
+
 
         public async Task<IActionResult> Details(int? id)
         {
