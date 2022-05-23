@@ -41,7 +41,7 @@ namespace TalepSistemi.Controllers
             {
                 HttpContext.Session.SetString("testSession", JsonSerializer.Serialize(kisi));
                 if (kisi.Adminlik == true){return RedirectToAction("AdminIndex", "Admin");}
-                else{return RedirectToAction("Kullanici");}
+                else{return RedirectToAction("Index");}
             }
             else{return RedirectToAction("Login");}
         }
@@ -51,6 +51,8 @@ namespace TalepSistemi.Controllers
             var kullanici = JsonSerializer.Deserialize<Kullanici>(kisiVeri);
             ViewBag.kisiVeri = kullanici.KullaniciAdi;
             ViewBag.kisiVeri2 = kullanici.Adminlik;
+            ViewBag.kisiVeri3 = kullanici.Fotograf;
+            ViewBag.kisiVeri4 = kullanici.Konum;
             return View();
         }
 

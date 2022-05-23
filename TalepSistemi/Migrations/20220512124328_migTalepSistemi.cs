@@ -15,7 +15,9 @@ namespace TalepSistemi.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     KullaniciAdi = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Sifre = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Adminlik = table.Column<bool>(type: "bit", nullable: false)
+                    Adminlik = table.Column<bool>(type: "bit", nullable: false),
+                    Konum = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Fotograf = table.Column<string>(type: "nvarchar(max)", nullable: true),
                 },
                 constraints: table =>
                 {

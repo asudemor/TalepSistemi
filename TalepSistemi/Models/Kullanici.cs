@@ -14,5 +14,8 @@ namespace TalepSistemi.Models
         [DataType(DataType.Password)]
         public string Sifre { get; set; }
         public bool Adminlik { get; set; }
+        public string Konum { get; set; }
+        public string Fotograf { get; set; }
+
     }
 }

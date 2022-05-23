@@ -37,6 +37,12 @@ namespace TalepSistemi.Migrations
                     b.Property<string>("Sifre")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Konum")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Fotograf")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("id");
 
                     b.ToTable("Kullanicilar");
