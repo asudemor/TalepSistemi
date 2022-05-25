@@ -10,6 +10,7 @@ using TalepSistemi.Data;
 using TalepSistemi.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Newtonsoft.Json;
 
 namespace TalepSistemi.Controllers
 {
@@ -17,6 +18,9 @@ namespace TalepSistemi.Controllers
     {
         private readonly AppDbContext _context;
         private readonly IWebHostEnvironment _hostEnviroment;
+
+        public object Session { get; private set; }
+
         public HomeController(AppDbContext context, IWebHostEnvironment hostEnviroment)
         {
             _context = context;
@@ -40,16 +44,17 @@ namespace TalepSistemi.Controllers
             if (kisi != null)
             {
                 ViewBag.username = kisi.KullaniciAdi;
-                HttpContext.Session.SetString("testSession", JsonSerializer.Serialize(kisi));
+                HttpContext.Session.SetString("user", JsonConvert.SerializeObject(kisi));
                 if (kisi.Adminlik == true){return RedirectToAction("AdminIndex", "Admin");}
                 else{return RedirectToAction("Index","Talep");}
             }
             else{return RedirectToAction("Login");}
         }
+
         public IActionResult Profil()
         {
-            var kisiVeri = HttpContext.Session.GetString("testSession");
-            var kullanici = JsonSerializer.Deserialize<Kullanici>(kisiVeri);
+            var kisiVeri = HttpContext.Session.GetString("user");
+            var kullanici = JsonConvert.DeserializeObject<Kullanici>(kisiVeri);
             ViewBag.kisiVeri = kullanici.KullaniciAdi;
             ViewBag.kisiVeri2 = kullanici.Adminlik;
             ViewBag.kisiVeri3 = kullanici.Fotograf;

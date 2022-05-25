@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -35,8 +37,13 @@ namespace TalepSistemi.Controllers
         [HttpPost]
         public async Task<IActionResult> TalepOlustur(Talep talep) //gorevi veritabanına kaydetmek
         {
+            var aktifUser = HttpContext.Session.GetString("user");
+            var kullanici = JsonConvert.DeserializeObject<Kullanici>(aktifUser);
+            ViewBag.username = kullanici.KullaniciAdi;
+
             if (!ModelState.IsValid)
             {
+                
                 return View("TalepOlustur");
             }
             if (talep.Dosya != null)
@@ -61,20 +68,14 @@ namespace TalepSistemi.Controllers
             return RedirectToAction("BekleyenTalep");
         }
 
-        //public async Task<IActionResult> Listele()
-        //{
-        //   return View(await _context.Talepler.ToListAsync());
-        //}
-
-        public IActionResult Listele(string? username)
+        public IActionResult Listele(string username)
         {
-            //username = "asudemor"; //Otomatik gelmesi gerekli.
-            List<Talep> gonderenTalep = _context.Talepler.Where(x => x.TalepGonderen == username).ToList();
-            //var listele = _context.Talepler.Where(x => x.TalepGonderen == username).ToList();
-            //return View(listele);
-            return View(gonderenTalep);
+            var aktifUser = HttpContext.Session.GetString("user");
+            var kullanici = JsonConvert.DeserializeObject<Kullanici>(aktifUser);
+            username = kullanici.KullaniciAdi;
+            var talepler = _context.Talepler.Where(x => x.TalepGonderen == username).ToList();
+            return View(talepler);
         }
-
 
         public async Task<IActionResult> Details(int? id)
         {
@@ -127,9 +128,12 @@ namespace TalepSistemi.Controllers
             _context.SaveChanges();
             return RedirectToAction("BekleyenTalep");
         }
-        public IActionResult BekleyenTalep()
+        public IActionResult BekleyenTalep(string username)
         {
-            var talep = _context.Talepler.Where(x => x.TalepDurum == false).ToList();
+            var aktifUser = HttpContext.Session.GetString("user");
+            var kullanici = JsonConvert.DeserializeObject<Kullanici>(aktifUser);
+            username = kullanici.KullaniciAdi;
+            var talep = _context.Talepler.Where(x => x.TalepGonderen == username && x.TalepDurum == false).ToList();
             if (talep == null) { return NotFound(); }
             return View(talep);
         }
