@@ -7,7 +7,6 @@
 
 <table class="table table-borderless mt-4">
     <thead>
-        <th>ID</th>
         <th>Gönderen</th>
         <th>Departman</th>
         <th>Konu</th>
@@ -19,7 +18,6 @@
         @foreach (var tlp in Model)
         {
             <tr>
-                <td>@Html.DisplayFor(modelItem => tlp.TalepID)</td>
                 <td>@Html.DisplayFor(modelItem => tlp.TalepGonderen)</td>
                 <td>@Html.DisplayFor(modelItem => tlp.TalepDepartman)</td>
                 <td>@Html.DisplayFor(modelItem => tlp.TalepKonu)</td>

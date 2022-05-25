@@ -12,7 +12,7 @@ using TalepSistemi.Models;
 
 namespace TalepSistemi.Controllers
 {
-    public class AdminController : Controller
+    public class AdminController : BaseController
     {
         private readonly AppDbContext _context;
         private readonly IWebHostEnvironment _hostEnviroment;
