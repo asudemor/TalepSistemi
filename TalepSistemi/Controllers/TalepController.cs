@@ -24,22 +24,19 @@ namespace TalepSistemi.Controllers
             _context = context;
             _hostEnviroment = hostEnviroment;
         }
-        public IActionResult Index()
-        {
 
-            return View();
-        }
         public IActionResult TalepOlustur()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> TalepOlustur(Talep talep) //gorevi veritabanına kaydetmek
         {
             var aktifUser = HttpContext.Session.GetString("user");
             var kullanici = JsonConvert.DeserializeObject<Kullanici>(aktifUser);
             ViewBag.username = kullanici.KullaniciAdi;
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> TalepOlustur(Talep talep)
+        {
 
             if (!ModelState.IsValid)
             {

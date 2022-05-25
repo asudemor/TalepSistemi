@@ -27,10 +27,6 @@ namespace TalepSistemi.Controllers
             _hostEnviroment = hostEnviroment;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
 
         public IActionResult Login()
         {
@@ -45,8 +41,8 @@ namespace TalepSistemi.Controllers
             {
                 ViewBag.username = kisi.KullaniciAdi;
                 HttpContext.Session.SetString("user", JsonConvert.SerializeObject(kisi));
-                if (kisi.Adminlik == true){return RedirectToAction("AdminIndex", "Admin");}
-                else{return RedirectToAction("Index","Talep");}
+                if (kisi.Adminlik == true){return RedirectToAction("AdminYeniTalepler", "Admin");}
+                else{return RedirectToAction("Listele","Talep");}
             }
             else{return RedirectToAction("Login");}
         }

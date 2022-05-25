@@ -2,6 +2,7 @@
 @{ViewData["Title"] = "Talep Oluşturma Sayfası";}
 <h1>@ViewData["Title"]</h1>
 
+
 <form asp-action="TalepOlustur" enctype="multipart/form-data">
     <div class="form-group">
         <label for="gonderen">Gönderen</label>
@@ -31,6 +32,6 @@
         <label asp-for="Dosya" for="dosyaYukle" class="form-control-label"></label>
         <input asp-for="Dosya" class="form-control-file" type="file" id="dosyaYukle">
     </div>
-       
+
     <button type="submit" class="btn btn-primary btn-block mb-4">Talep Oluştur</button>
 </form>
